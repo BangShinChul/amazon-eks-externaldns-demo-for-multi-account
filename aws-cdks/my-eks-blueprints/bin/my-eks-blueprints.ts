@@ -42,8 +42,8 @@ const blueClusterAddOns: Array<blueprints.ClusterAddOn> = [
     version: "v1.25.0-eksbuild.1",
     kmsKeys: [
       blueprints.getResource(
-        (context) => new kms.Key(context.scope, "ebs-csi-driver-key", {
-          alias: "ebs-csi-driver-key"
+        (context) => new kms.Key(context.scope, "blue-cluster-ebs-csi-driver-key", {
+          alias: "blue-cluster-ebs-csi-driver-key"
         })
       ),
     ],
@@ -118,8 +118,8 @@ const greenClusterAddOns: Array<blueprints.ClusterAddOn> = [
     version: "v1.25.0-eksbuild.1",
     kmsKeys: [
       blueprints.getResource(
-        (context) => new kms.Key(context.scope, "ebs-csi-driver-key", {
-          alias: "ebs-csi-driver-key"
+        (context) => new kms.Key(context.scope, "green-cluster-ebs-csi-driver-key", {
+          alias: "green-cluster-ebs-csi-driver-key"
         })
       ),
     ],
