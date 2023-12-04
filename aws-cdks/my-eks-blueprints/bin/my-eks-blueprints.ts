@@ -55,6 +55,15 @@ const blueCluster = blueprints.EksBlueprint.builder()
   .addOns(...blueClusterAddOns)
   .name("blue-cluster")
   .version(eks.KubernetesVersion.V1_23)
+  .clusterProvider(
+    new blueprints.MngClusterProvider({
+      nodeGroupCapacityType: eks.CapacityType.ON_DEMAND,
+      version: eks.KubernetesVersion.V1_23,
+      instanceTypes: [new ec2.InstanceType("m5.large")],
+      minSize: 2,
+      maxSize: 2,
+    })
+  )
   .resourceProvider(
     "blue-cluster-hosted-zone",
     new blueprints.DelegatingHostedZoneProvider({
@@ -70,7 +79,7 @@ const blueCluster = blueprints.EksBlueprint.builder()
       provide(context: blueprints.ResourceContext): cdk.aws_ec2.IVpc {
         return new ec2.Vpc(context.scope, "blue-cluster-vpc", {
           ipAddresses: ec2.IpAddresses.cidr("172.51.0.0/16"),
-          availabilityZones: [`${region}a`, `${region}b`, `${region}c`],
+          availabilityZones: [`${region}a`, `${region}c`],
           subnetConfiguration: [
             {
               cidrMask: 24,
@@ -131,13 +140,22 @@ const greenCluster = blueprints.EksBlueprint.builder()
   .addOns(...greenClusterAddOns)
   .name("green-cluster")
   .version(eks.KubernetesVersion.V1_27)
+  .clusterProvider(
+    new blueprints.MngClusterProvider({
+      nodeGroupCapacityType: eks.CapacityType.ON_DEMAND,
+      version: eks.KubernetesVersion.V1_27,
+      instanceTypes: [new ec2.InstanceType("m5.large")],
+      minSize: 2,
+      maxSize: 2,
+    })
+  )
   .resourceProvider(
     blueprints.GlobalResources.Vpc,
     new (class implements blueprints.ResourceProvider<ec2.IVpc> {
       provide(context: blueprints.ResourceContext): cdk.aws_ec2.IVpc {
         return new ec2.Vpc(context.scope, "green-cluster-vpc", {
           ipAddresses: ec2.IpAddresses.cidr("172.61.0.0/16"),
-          availabilityZones: [`${region}a`, `${region}b`, `${region}c`],
+          availabilityZones: [`${region}a`, `${region}c`],
           subnetConfiguration: [
             {
               cidrMask: 24,
