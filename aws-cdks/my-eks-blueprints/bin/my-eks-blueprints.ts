@@ -70,7 +70,7 @@ const blueCluster = blueprints.EksBlueprint.builder()
       parentDomain: hostedZoneName,
       subdomain: subdomain,
       parentDnsAccountId: parentDnsAccountId,
-      delegatingRoleName: 'account-b-role'
+      delegatingRoleName: `${account}-account-b-role`
     })
   )
   .resourceProvider(
