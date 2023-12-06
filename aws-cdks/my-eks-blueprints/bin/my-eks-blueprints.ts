@@ -49,6 +49,12 @@ const blueClusterAddOns: Array<blueprints.ClusterAddOn> = [
     ],
   }),
 ];
+
+const blueRootVolume: ec2.BlockDevice = {
+  deviceName: '/dev/xvda',
+  volume: ec2.BlockDeviceVolume.ebs(50, {encrypted: true}), 
+}
+
 const blueCluster = blueprints.EksBlueprint.builder()
   .account(account)
   .region(region)
@@ -62,6 +68,16 @@ const blueCluster = blueprints.EksBlueprint.builder()
       instanceTypes: [new ec2.InstanceType("m5.large")],
       minSize: 2,
       maxSize: 2,
+      amiType: eks.NodegroupAmiType.AL2_X86_64,
+      launchTemplate: {
+        blockDevices: [blueRootVolume],
+        tags: {
+          Name: "blue-cluster",
+        }
+      },
+      nodeGroupTags: {
+        Name: "blue-cluster",
+      }
     })
   )
   .resourceProvider(
@@ -134,6 +150,12 @@ const greenClusterAddOns: Array<blueprints.ClusterAddOn> = [
     ],
   }),
 ];
+
+const greenRootVolume: ec2.BlockDevice = {
+  deviceName: '/dev/xvda',
+  volume: ec2.BlockDeviceVolume.ebs(50, {encrypted: true}), 
+}
+
 const greenCluster = blueprints.EksBlueprint.builder()
   .account(account)
   .region(region)
@@ -147,6 +169,16 @@ const greenCluster = blueprints.EksBlueprint.builder()
       instanceTypes: [new ec2.InstanceType("m5.large")],
       minSize: 2,
       maxSize: 2,
+      amiType: eks.NodegroupAmiType.AL2_X86_64,
+      launchTemplate: {
+        blockDevices: [greenRootVolume],
+        tags: {
+          Name: "green-cluster",
+        }
+      },
+      nodeGroupTags: {
+        Name: "green-cluster",
+      }
     })
   )
   .resourceProvider(
