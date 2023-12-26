@@ -3,7 +3,7 @@
 
 해당 프로젝트에서는 AWS 멀티 어카운트 사이에서 ExternalDNS 애드온을 활용해 두 EKS 클러스터 간 가중치 기반 라우팅을 구성하는 방법과 Velero 애드온을 활용하여 EKS 클러스터 오브젝트 및 스토리지를 백업하고 복원할 수 있는 방법을 안내합니다.
 
-실습 가이드 문서는 [여기](https://www.notion.so/bscnote/EKS-Upgrade-4532afde3f9349e19208e6dbb874eb38?pvs=4)를 참고합니다.
+실습 가이드 문서는 [여기](https://bangshinchul.gitbook.io/amazon-eks-workshop/)를 참고합니다.
 
 ### 0. Pre-Requisites
 - **네임서버 설정이 가능한** 본인 소유의 도메인이 필요합니다.
