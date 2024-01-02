@@ -1,7 +1,7 @@
 # 프로젝트 소개
 해당 프로젝트는 [Blue/Green 전략](./WHAT-IS-BLUE-GREEN-KR.md)을 활용하여 안전하게 클러스터를 업그레이드 할 수 있는 방법과 인사이트를 전달하는 것이 목적입니다.
 
-해당 프로젝트에서는 AWS 멀티 어카운트 사이에서 ExternalDNS 애드온을 활용해 두 EKS 클러스터 간 가중치 기반 라우팅을 구성하는 방법과 Velero 애드온을 활용하여 EKS 클러스터 오브젝트 및 스토리지를 백업하고 복원할 수 있는 방법을 안내합니다.
+해당 프로젝트에서는 AWS 멀티 어카운트 사이에서 ExternalDNS 애드온을 활용해 두 EKS 클러스터 간 가중치 기반 라우팅을 구성하는 방법을 안내합니다.
 
 실습 가이드 문서는 [여기](https://bangshinchul.gitbook.io/amazon-eks-workshop/)를 참고합니다.
 
